@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :blogs
+  
   root 'post#index'
 
   get 'post/new'
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'post/destroy/:id' => 'post#destroy'
   
-  get 'post/create_comment/:id' => 'post#create_comment'
+  post 'post/create_comment/:id' => 'post#create_comment'
 
   get 'user/index'
 
@@ -25,9 +27,11 @@ Rails.application.routes.draw do
 
   get 'user/login'
 
-  get 'user/login_process'
+  post 'user/login_process'
   
   get 'user/logout'
+  
+  get 'user/note'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

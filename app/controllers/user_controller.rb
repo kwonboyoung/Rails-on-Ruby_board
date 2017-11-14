@@ -45,5 +45,9 @@ class UserController < ApplicationController
     flash[:notice]="로그아웃되었습니다."
     redirect_to '/'
   end
+  
+  def note
+  
+  end
 
 end

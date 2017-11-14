@@ -56,8 +56,8 @@ class PostController < ApplicationController
 
   def create_comment
     Comment.create(
-      content: params[:comment],
-      post_id: params[:post_id]
+      content: params[:content],
+      post_id: params[:id]
     )
     redirect_to :back
   
