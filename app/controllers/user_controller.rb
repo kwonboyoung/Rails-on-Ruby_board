@@ -28,15 +28,17 @@ class UserController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user
       if @user.password == params[:password]
+        flash[:notice] = "로그인 됬어요"
         session[:user_id] = @user.id
-        flash[:notice] ="로그인이 되었습니다."
         redirect_to '/'
       else
-        flash[:notice]="비밀번호가 틀렸습니다."
+        flash[:alert] = "패스워드가 틀렸어요"
         redirect_to '/user/login'
       end
+    else
+      flash[:alert] = "그런 이메일의 유저가 없어"
+      redirect_to '/user/new'
     end
-    
   end
   
   
