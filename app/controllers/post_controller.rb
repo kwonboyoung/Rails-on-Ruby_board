@@ -1,4 +1,5 @@
 class PostController < ApplicationController
+  before_action(:find_post, only: [:show, :update, :modify, :destroy]) 
   def index
      @posts = Post.all
   end
@@ -19,7 +20,6 @@ class PostController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     
   # @comments = Comment.where(post_id: params[:id])
   # @comments = @post.comments # Comment.all
@@ -27,27 +27,23 @@ class PostController < ApplicationController
   end
 
   def modify
-     @id = params[:id]
-    @post = Post.find(@id)
+    
   end
 
   def update
     # 1번 글에 대해서 나는 수정을 할거야
     # 1번 글을 찾는다.
-    @id = params[:id]
-    @post = Post.find(@id)
+
     # 해당 글을 업데이트한다.
     @post.update(
       title: params[:title],
       content: params[:content]
     )
     
-    redirect_to "/post/show/#{@id}"
+    redirect_to "/post/show/#{@post.id}"
   end
 
   def destroy
-    @id = params[:id]
-    @post = Post.find(@id)
     
     @post.destroy
     
@@ -61,5 +57,11 @@ class PostController < ApplicationController
     )
     redirect_to :back
   
+  end
+  
+  # 반복되는 작업 추상화
+  private
+  def find_post
+    @post = Post.find(params[:id])
   end
 end

@@ -1,8 +1,28 @@
 Rails.application.routes.draw do
+  root 'tweets#index'
+  
+  resources :tweets
+
+  # get 'tweets/new'
+  
+  # #post 'tweets/create'
+  # #get 'tweets/create'
+  # post 'tweets', to: 'tweets#create' # post 'tweets' => 'tweets#create'
+
+  # get 'tweets/show'
+
+  # get 'tweets/:id/edit' => 'tweets#edit'
+
+  # put 'tweets/:id' => 'tweets#update'
+
+  # delete 'tweets/:id' => 'tweets#destroy'
+
   resources :blogs
   
-  root 'post#index'
-
+  get 'post/index'
+  
+  post 'post/index'
+  
   get 'post/new'
 
   get 'post/create'

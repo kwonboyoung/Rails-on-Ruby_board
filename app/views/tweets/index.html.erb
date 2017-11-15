@@ -1,0 +1,12 @@
+<h1>Tweets list</h1>
+<% @tweets.each do |tweet|%>
+<%= tweet.content%> 
+<a href="/tweets/<%= tweet.id%>/edit">[수정]</a>
+<!--<a href="/tweets/<%= tweet.id%>/destroy">[삭제]</a>-->
+<%= link_to("[삭제]","/tweets/#{ tweet.id}", method: "delete") %>
+<br>
+<% end %>
+<br>
+<p><a href="/tweets/new">새 트윗만들기</a></p>
+<%= link_to("홈으로","/") %>
+<%= link_to("게시판 가기","/post/index", method: "post") %>

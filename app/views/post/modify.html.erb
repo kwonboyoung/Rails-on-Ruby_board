@@ -1,6 +1,16 @@
 <h1>게시글 수정하기</h1>
-<form action="/post/update/<%= @post.id %>">
+<!--<form action="/post/update/<%= @post.id %>">
     제목 : <input type="text" name="title" value="<%= @post.title %>"><br>
     내용 : <input type="text" name="content" value="<%= @post.content %>"><br>
     <input type="submit">
-</form>
+</form>-->
+
+<%= form_tag("/post/update/#{ @post.id }", method:"get") do %>
+    <%= label_tag(:title, "제목 : ") %>
+    <%= text_field_tag(:title, @post.title) %>
+    <br/>
+    <%= label_tag(:content, "내용 : ") %>
+    <%= text_field_tag(:content, @post.content) %>
+    <br/>
+    <%= submit_tag("수정") %>
+<% end %>

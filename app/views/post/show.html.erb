@@ -1,22 +1,30 @@
-<h1><%= @post.id %>번째 글</h1>
-<p>글쓴이 : <%= @post.user.email %></p>
-<p>제목 : <%= @post.title %></p>
-<p>내용 : <%= @post.content %></p>
-<a href="/post/modify/<%= @post.id %>">수정</a>
-<a href="/post/destroy/<%= @post.id %>">삭제</a>
-
-<!-- 댓글 다는 form -->
-<p><b>댓글달기</b></p>
-<!--<form action="/post/create_comment/<%= @post.id%>">
-    <input type="hidden" name="post_id" value="<%= @post.id%>">
-    <input type="text" name="comment">
-    <input type="submit" value="등록">
-</form>
-
-
-<% @post.comments.each do |c| %>
-<p><%= c.content%></p>
-<%end%>-->
+<div class="container">
+    <div class="row">
+        <h1><%= @post.id %>번째 글</h1>
+    </div>
+</div>
+<div class="container">
+    <a href="/post/modify/<%= @post.id %>"><div class="text-right"><button type="button" class="btn btn-primary">수정</button></div></a>
+    <a href="/post/destroy/<%= @post.id %>"><div class="text-right"><button type="button" class="btn btn-primary">삭제</button></div></a>
+        <div class="row">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td scope="col">글쓴이</td>
+              <td scope="col"><%= @post.user.email %></td>
+            </tr>
+            <tr>
+              <td scope="col">제목</td>
+              <td scope="col"><%= @post.title %></td>
+            </tr>
+            <tr>
+              <td scope="col">내용</td>
+              <td scope="col"><%= @post.content %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
 
 <%= form_tag({controller:"post", action:"create_comment"}, method: "post") do %>
     <%= hidden_field_tag(:id, @post.id)%>
@@ -29,3 +37,16 @@
 <% @post.comments.each do |c| %>
     <p><%= c.content %></p>
 <% end %>
+
+<!-- 댓글 다는 form -->
+<!--<p><b>댓글달기</b></p>-->
+<!--<form action="/post/create_comment/<%= @post.id%>">
+    <input type="hidden" name="post_id" value="<%= @post.id%>">
+    <input type="text" name="comment">
+    <input type="submit" value="등록">
+</form>
+
+
+<% @post.comments.each do |c| %>
+<p><%= c.content%></p>
+<%end%>-->
